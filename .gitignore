@@ -1,0 +1,19 @@
+# Node
+node_modules/
+npm-debug.log*
+coverage/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Java
+target/
+*.class
+
+# General
+.DS_Store
+.env
+*.log

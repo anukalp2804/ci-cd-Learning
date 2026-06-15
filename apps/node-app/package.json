@@ -1,0 +1,20 @@
+{
+  "name": "cicd-node-app",
+  "version": "1.0.0",
+  "description": "Sample Node.js app used to demonstrate CI/CD pipelines",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage",
+    "lint": "eslint src/**/*.js tests/**/*.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.57.0",
+    "supertest": "^7.0.0"
+  }
+}

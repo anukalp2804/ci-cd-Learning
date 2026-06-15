@@ -1,0 +1,51 @@
+name: Deploy Docs Site to GitHub Pages
+
+# This workflow demonstrates a real CONTINUOUS DEPLOYMENT pipeline:
+# every push to main that touches docs-site/ automatically publishes
+# the static site to GitHub Pages — no manual steps required.
+#
+# One-time setup required in your repo (after first push):
+# Settings -> Pages -> Source -> "GitHub Actions"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs-site/**'
+      - '.github/workflows/deploy-docs-site.yml'
+  workflow_dispatch: {}
+
+# Required permissions for deploying to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only allow one deployment at a time, cancel in-progress runs
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Upload the docs-site folder as a Pages artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs-site
+
+      # Step 3: Deploy the artifact to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

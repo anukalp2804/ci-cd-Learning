@@ -1,0 +1,55 @@
+name: Node App - Basic CI
+
+# This workflow demonstrates the BASIC level of CI:
+# - Trigger on push/PR
+# - Install dependencies
+# - Run lint
+# - Run tests
+#
+# Read the full explanation here:
+# /github-actions/basic/node-basic.md
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/node-app/**'
+      - '.github/workflows/node-basic.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'apps/node-app/**'
+
+jobs:
+  build-and-test:
+    name: Build & Test Node App
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: apps/node-app
+
+    steps:
+      # Step 1: Checkout the repository code onto the runner
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/node-app/package-lock.json
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run linter to catch code style issues
+      - name: Run ESLint
+        run: npx eslint src/**/*.js tests/**/*.js
+
+      # Step 5: Run unit tests with coverage
+      - name: Run tests
+        run: npx jest --coverage
