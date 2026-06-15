@@ -1,4 +1,4 @@
-# CI/CD Mastery 🚀
+# CI/CD Learning 🚀
 
 A hands-on, **fork-and-learn** repository for understanding CI/CD from
 absolute basics to advanced real-world setups — across **4 major CI/CD
