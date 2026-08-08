@@ -4,7 +4,7 @@ A hands-on, **fork-and-learn** repository for understanding CI/CD from
 absolute basics to advanced real-world setups — across **4 major CI/CD
 platforms** and **3 programming languages**.
 
-> **New to CI/CD?** Start with [`docs/01-what-is-cicd.md`](docs/01-what-is-cicd.md) —
+> **New to CI/CD ?** Start with [`docs/01-what-is-cicd.md`](docs/01-what-is-cicd.md) —
 > it explains *what* CI/CD is, *why* it exists, and the key vocabulary you'll
 > need before touching any config files.
 
